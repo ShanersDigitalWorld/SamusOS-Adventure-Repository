@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samus OS - Full AI Integrated System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        .header {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background: #1e1e1e;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            width: 90%;
+            margin-top: 20px;
+            height: 80%;
+        }
+        .sidebar {
+            width: 300px;
+            background: #222;
+            padding: 10px;
+            border-radius: 5px;
+            position: relative;
+            overflow-y: auto;
+        }
+        .main {
+            flex-grow: 1;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .terminal {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 300px;
+            font-family: monospace;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .chat-input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .file-tree {
+            background: #444;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .file-tree ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .file-tree li {
+            padding: 5px;
+            cursor: pointer;
+        }
+        .file-tree li:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">🛰️ Samus OS - AI Integrated System</div><div class="container">
+    <div class="sidebar">
+        <div class="file-tree">
+            <strong>📂 Full File System</strong>
+            <ul>
+                <li><span onclick="toggleFolder(this)">📁 /home</span>
+                    <ul style="display: none;">
+                        <li>👤 User01</li>
+                        <li>👥 Shared Files</li>
+                    </ul>
+                </li>
+                <li><span onclick="toggleFolder(this)">📁 /system</span>
+                    <ul style="display: none;">
+                        <li>🛠️ Kernel</li>
+                        <li>📂 Modules</li>
+                        <li>📄 Logs</li>
+                    </ul>
+                </li>
+                <li><span onclick="toggleFolder(this)">📁 /ai</span>
+                    <ul style="display: none;">
+                        <li>🧠 Cognition</li>
+                        <li>💾 Memory</li>
+                        <li>📚 Learning</li>
+                        <li>⚡ Execution</li>
+                        <li>⚖️ Ethics</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="terminal" id="terminal">
+            <strong>🖥️ Samus OS Terminal</strong>
+            <p>Welcome to Samus OS. Type 'help' for available commands.</p>
+        </div>
+        <input type="text" class="chat-input" id="chat-input" placeholder="Enter command...">
+    </div>
+</div>
+
+<script>
+    function toggleFolder(element) {
+        let subMenu = element.nextElementSibling;
+        if (subMenu) {
+            subMenu.style.display = subMenu.style.display === 'none' ? 'block' : 'none';
+        }
+    }
+    
+    document.getElementById("chat-input").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            let input = this.value.trim();
+            if (input !== "") {
+                processCommand(input);
+                this.value = "";
+            }
+        }
+    });
+    
+    function processCommand(command) {
+        let terminal = document.getElementById("terminal");
+        if (command.toLowerCase() === "help") {
+            terminal.innerHTML += `<br><strong>System:</strong> Available commands: help, clear, ls, cd, nano, samus-cli, nexus-search`;
+        } else if (command.toLowerCase() === "clear") {
+            terminal.innerHTML = `<strong>🖥️ Samus OS Terminal</strong><p>Welcome to Samus OS. Type 'help' for available commands.</p>`;
+        } else {
+            terminal.innerHTML += `<br><strong>System:</strong> Unknown command: ${command}`;
+        }
+    }
+</script>
+
+</body>
+</html>
